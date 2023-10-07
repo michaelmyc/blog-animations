@@ -9,4 +9,4 @@ frame_size = "1920, 720"
 preview = false
 output_file_name = "convolution"
 copy_file = true
-copy_location = "content/blog/convolutional-layers"
+copy_location = "content/blog/building-blocks-of-neural-networks"

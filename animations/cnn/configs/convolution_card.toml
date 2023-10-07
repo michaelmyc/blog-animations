@@ -1,0 +1,13 @@
+# Import path to animation module, renders the FinalScene class
+import_module = "animations.cnn.src.convolution_card"
+
+# Scene Settings
+is_image = false
+background_color = "#10151d"
+frame_size = "1920, 720"
+
+# Output Settings
+preview = false
+output_file_name = "convolution_card"
+copy_file = true
+copy_location = "content/series/building-blocks-of-neural-networks"
