@@ -26,11 +26,11 @@ else:
 
 if cfg["is_image"]:
     config.background_opacity = 0
-    config.output_file = cfg["output_file_name"] + ".png"
+    config.output_file = cfg["output_file_name"]
 else:
     config.frame_rate = cfg.get("frame_rate", 30)
     config.background_color = cfg.get("background_color", "#151b22")
-    config.output_file = cfg["output_file_name"] + ".mp4"
+    config.output_file = cfg["output_file_name"]
 
 config.preview = cfg.get("preview", False)
 
