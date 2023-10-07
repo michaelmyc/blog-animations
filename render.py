@@ -36,5 +36,5 @@ config.preview = cfg.get("preview", False)
 
 scene.FinalScene().render()
 
-if not config.preview:
-    shutil.copy(config.output_file, Path("..") / cfg["save_location"])
+if cfg["copy_file"]:
+    shutil.copy(config.output_file, Path("..") / cfg["copy_location"])
