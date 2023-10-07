@@ -3,11 +3,11 @@ import_module = "animations.cnn.src.convolution"
 
 # Scene Settings
 is_image = false
-background_color = "#151b22"
+background_color = "#10151d"
 frame_size = "1920, 720"
 
 # Output Settings
 preview = false
 output_file_name = "convolution"
 copy_file = true
-copy_location = "content/blog/cnn"
+copy_location = "content/series/building-blocks-of-neural-networks"

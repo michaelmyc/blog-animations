@@ -9,9 +9,8 @@ def create_convolution_2d(
     array_shape,
     array_padding,
     kernel_shape,
-    kernel_pos=[4, 0],
     array_pos=[-4, 0],
-    result_pos=[5, 0],
+    result_pos=[4, 0],
     stride=[1, 1],
     end_wait=1.5,
 ):
@@ -27,45 +26,41 @@ def create_convolution_2d(
     array_shape = np.array(array_shape)
     array_padding = np.array(array_padding)
     kernel_shape = np.array(kernel_shape)
-    kernel_pos = np.array(kernel_pos)
     array_pos = np.array(array_pos)
     result_pos = np.array(result_pos)
     stride = np.array(stride)
-
-    array = create_array_2d(array_shape, padding=array_padding, pos=array_pos)
-    kernel = create_array_2d(kernel_shape, color=ORANGE, pos=kernel_pos)
-    kernel.set_z_index(999)
-    kernel.generate_target()
-    scene.add(array)
-    scene.add(kernel)
 
     padded_shape = array_shape + array_padding * 2
     result_shape = np.ceil((padded_shape - kernel_shape + 1) / stride).astype(int)
     conv_start = np.flip(array_pos) - (padded_shape / 2 - kernel_shape / 2) * [-1, 1]
 
-    start = True
+    array = create_array_2d(array_shape, padding=array_padding, pos=array_pos)
+    kernel = create_array_2d(kernel_shape, color=ORANGE, pos=np.flip(conv_start))
+    kernel.set_z_index(999)
+    kernel.generate_target()
+    scene.add(array)
+    scene.add(kernel)
+
     for r in range(result_shape[0]):
         for c in range(result_shape[1]):
             kernel.target.set_x(conv_start[1] + c * stride[1])
             kernel.target.set_y(conv_start[0] - r * stride[0])
 
-            if start:
-                scene.play(MoveToTarget(kernel), run_time=1)
-                start = False
-            else:
-                scene.play(MoveToTarget(kernel), run_time=0.5)
+            scene.play(MoveToTarget(kernel), run_time=0.5)
 
-            part_result_pos = result_pos - np.flip(result_shape) / 2 * [1, -1] + [c, -r]
+            part_result_pos = result_pos - np.flip(result_shape - 1) / 2 * [1, -1] + [c, -r]
             result = create_array_2d(1, GREEN, pos=part_result_pos)
 
             temp_kernel = kernel.copy()
-            # temp_kernel.set_color(GREEN)
-            # temp_kernel.set_fill(GREEN)
             temp_kernel.set_z_index(1)
             scene.play(Transform(temp_kernel, result))
 
     scene.wait(end_wait)
 
+    kernel.target.set_x(conv_start[1])
+    kernel.target.set_y(conv_start[0])
+
+    scene.play(MoveToTarget(kernel), run_time=0.5)
 
 def create_array_2d(
     shape,
