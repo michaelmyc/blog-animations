@@ -1,0 +1,11 @@
+# Import path to animation module, renders the FinalScene class
+import_module = "animations.cnn.src.convolution"
+
+# Scene Settings
+is_image = false
+background_color = "#151b22"
+
+# Output Settings
+preview = true
+output_file_name = "convolution"
+save_location = "content/blog/cnn"

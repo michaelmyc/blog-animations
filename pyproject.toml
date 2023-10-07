@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "blog-animations"
+version = "0.1.0"
+description = ""
+authors = ["Michael Mao <michael.mao99@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+numpy = "^1.26.0"
+jupyterlab = "^4.0.6"
+manim = "^0.17.3"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "default"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
